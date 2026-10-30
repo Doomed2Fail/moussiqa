@@ -2,6 +2,40 @@
 
 **Vibez avec ER-RAFIY & SAADEDDINE.** Application musicale réalisée par **ER-RAFIY Taha Amine et SAADEDDINE Zineb** : Vue 3, Vite, Vue Router et Composition API, sans Pinia. Interface glass mauve, lecteur audio, recherche, favoris et playlists. Backend PocketBase et connexion Spotify facultative.
 
+## Aperçu de Moussiqa
+
+Moussiqa réunit une interface glass mauve, une bibliothèque locale accessible sans compte et une intégration Spotify facultative. Découvrez l’accueil, les morceaux de démonstration et le parcours de connexion au catalogue Spotify.
+
+### Accueil et identité visuelle
+
+![Accueil de Moussiqa avec la bannière de fréquences mauves](docs/screenshots/accueil.png)
+
+Une navigation latérale, une bannière animée et un lecteur persistant pour retrouver sa musique dans un même espace.
+
+### Bibliothèque locale et lecture sans compte
+
+![Albums de démonstration et lecture du morceau Horizon](docs/screenshots/bibliotheque-locale.png)
+
+Les huit morceaux de test permettent de découvrir la lecture, les favoris et les playlists sans configurer Spotify.
+
+### Autorisation Spotify
+
+![Écran officiel d’autorisation Spotify pour Moussiqa](docs/screenshots/autorisation-spotify.png)
+
+La connexion passe par l’écran officiel Spotify : l’utilisateur choisit d’autoriser Moussiqa à accéder aux fonctionnalités demandées.
+
+### Bibliothèque connectée à Spotify
+
+![Bibliothèque Spotify affichée dans Moussiqa](docs/screenshots/bibliotheque-spotify.png)
+
+Après connexion avec un compte autorisé, l’application affiche ses albums et playlists Spotify dans la même interface.
+
+### Détail d’un album
+
+![Détail de l’album UFUL et liste des morceaux dans Moussiqa](docs/screenshots/album-spotify.png)
+
+La page d’album présente la pochette, les artistes, la durée et les pistes, avec les commandes de lecture et d’ajout aux favoris ou playlists.
+
 ## 1. API Spotify
 
 Moussiqa intègre la **Spotify Web API** pour accéder au catalogue musical et le **Web Playback SDK** pour la lecture.
