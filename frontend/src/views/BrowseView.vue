@@ -125,8 +125,7 @@ function resetFilters() {
           </div>
         </div>
         <div class="hero-art frequency-art" aria-hidden="true">
-          <div class="frequency-kicker"><span></span>FRÉQUENCES PARTAGÉES <b>001 / MOUSSIQA</b></div>
-          <svg class="frequency-sculpture" viewBox="0 0 600 400" fill="none">
+          <svg class="frequency-sculpture" viewBox="0 0 600 400" preserveAspectRatio="none" fill="none">
             <defs>
               <linearGradient id="moussiqa-lilac" x1="38" y1="100" x2="562" y2="300" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#8d65ed" /><stop offset=".48" stop-color="#f0d6ff" /><stop offset="1" stop-color="#b484fa" />
@@ -146,13 +145,7 @@ function resetFilters() {
             <circle cx="495" cy="83" r="2.5" fill="#eccfff" />
             <circle cx="106" cy="312" r="2" fill="#e9afd9" />
           </svg>
-          <div class="frequency-message"><span>Le son</span><em>nous relie.</em></div>
-          <div class="frequency-signatures">
-            <span>ER-RAFIY<small>TAHA AMINE</small></span>
-            <i></i>
-            <span>SAADEDDINE<small>ZINEB</small></span>
-          </div>
-          <span class="frequency-caption">DEUX SENSIBILITÉS. UNE FRÉQUENCE.</span>
+
         </div>
       </section>
       <div class="discovery-heading">

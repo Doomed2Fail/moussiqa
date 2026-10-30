@@ -351,3 +351,25 @@ h3,
   .frequency-signatures { bottom: 39px; left: 10%; right: 10%; font-size: 9px; gap: 9px; }
   .frequency-caption { bottom: 17px; font-size: 4px; letter-spacing: 1.4px; }
 }
+
+/* Les fréquences traversent la bannière entière, derrière le contenu. */
+.hero-banner { position: relative; isolation: isolate; overflow: hidden; }
+.hero-banner > .hero-copy { position: relative; z-index: 2; }
+.hero-banner > .hero-art.frequency-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 75% 50%, #b47aec25, transparent 70%);
+  -webkit-mask-image: linear-gradient(90deg, #0002, #0005 30%, #000 62%);
+  mask-image: linear-gradient(90deg, #0002, #0005 30%, #000 62%);
+}
+.hero-art.frequency-art > .frequency-sculpture {
+  inset: -8% -5%;
+  width: 110%;
+  height: 116%;
+  max-width: none;
+}
