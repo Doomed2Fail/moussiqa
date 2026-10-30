@@ -156,3 +156,8 @@ Les morceaux de démonstration sont sous **CC0** : voir `frontend/public/demo-LI
 ## Prêt à écouter
 
 Une fois Moussiqa démarrée, ouvrez son adresse locale et cliquez sur **Lancer l’écoute**. Les huit morceaux inclus permettent de tester immédiatement l’application sans compte. Pour explorer le catalogue Spotify, utilisez ensuite **Connexion** avec un compte autorisé.
+
+## Auteurs
+
+- **ER-RAFIY Taha Amine**
+- **SAADEDDINE Zineb**
