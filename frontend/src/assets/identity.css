@@ -373,3 +373,30 @@ h3,
   height: 116%;
   max-width: none;
 }
+
+/* Le message conserve sa hauteur ; les listes défilent dans l’espace restant. */
+.app-layout > .sidebar {
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #ba8cdf55 transparent;
+}
+.app-layout > .sidebar > * { flex-shrink: 0; }
+.app-layout > .sidebar > .playlist-nav {
+  flex: 1 0 72px;
+  min-height: 72px;
+  overflow-y: auto;
+}
+.app-layout > .sidebar > .sidebar-bottom {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 18px;
+  padding-bottom: 4px;
+}
+.listening-note p { line-height: 1.65; overflow-wrap: anywhere; }
+@media (max-height: 760px) {
+  .app-layout > .sidebar .brand { margin-bottom: 25px; }
+  .app-layout > .sidebar .sidebar-divider { margin-top: 18px; margin-bottom: 18px; }
+  .app-layout > .sidebar .playlist-label { margin-top: 18px; }
+}

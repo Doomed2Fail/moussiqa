@@ -120,9 +120,6 @@ function resetFilters() {
           <button class="primary-button" :disabled="!library.tracks.length" @click="playSelection">
             <Play :size="19" fill="currentColor" />Lancer l’écoute
           </button>
-          <div class="hero-footnote">
-            <AudioLines :size="16" /><span>Imaginé par ER-RAFIY &amp; SAADEDDINE</span>
-          </div>
         </div>
         <div class="hero-art frequency-art" aria-hidden="true">
           <svg class="frequency-sculpture" viewBox="0 0 600 400" preserveAspectRatio="none" fill="none">
