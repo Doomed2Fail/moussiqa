@@ -1,0 +1,447 @@
+/* Moussiqa — verre fumé, mauve électrique et reflets rosés. */
+:root {
+  --lime: #d3adff;
+  --muted: #b3a7c5;
+  --border: #e7caff19;
+  --glass-border: #ecd8ff1f;
+  --glass-shadow: 0 18px 55px #07031240;
+  color: #f6f0ff;
+  background: #100a1b;
+}
+.spotify-shell {
+  --lime: #d3adff;
+}
+body {
+  background:
+    radial-gradient(ellipse at 12% 0%, #9149db30, transparent 42%),
+    radial-gradient(ellipse at 92% 18%, #d554ad1c, transparent 45%),
+    radial-gradient(ellipse at 50% 100%, #6550ca20, transparent 55%), #100a1b;
+  background-attachment: fixed;
+}
+::selection {
+  color: #fff;
+  background: #9b63d6aa;
+}
+:where(button, a, input):focus-visible {
+  outline-color: #debfff;
+  outline-offset: 4px;
+}
+.workspace,
+.music-workspace.workspace {
+  background: linear-gradient(150deg, #9d6ac014, #28173528 38%, #100a1b38);
+}
+.sidebar,
+.library-rail.sidebar {
+  background: linear-gradient(170deg, #2b1c3bd6, #170f27e8);
+  border-right: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(26px) saturate(135%);
+  backdrop-filter: blur(26px) saturate(135%);
+  box-shadow: 12px 0 50px #09031326;
+}
+.brand {
+  color: #fbf5ff;
+  letter-spacing: -1.4px;
+}
+.brand-symbol,
+.brand-dot {
+  color: #d3adff;
+}
+.nav-label,
+.sidebar-credit {
+  color: #9d88b4;
+}
+.nav-link,
+.playlist-link {
+  color: #baaccb;
+}
+.nav-link.selected,
+.playlist-link.selected,
+.favorite-link.selected {
+  color: #f0dcff;
+  background: linear-gradient(110deg, #b782f928, #da9af50d);
+  box-shadow: inset 0 0 0 1px #d6b3ff16;
+}
+.nav-link:hover,
+.playlist-link:hover {
+  background: #ddb4ff10;
+  color: #fff;
+}
+.favorite-tile,
+.rail-favorites,
+.likes-tile > svg:first-child {
+  background: linear-gradient(140deg, #8655e7, #cb8edf 65%, #e4b6ec);
+  color: #fff;
+  box-shadow: 0 4px 20px #b56beb24;
+}
+.listening-note {
+  background: linear-gradient(135deg, #ac77d819, #8b68dc09);
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
+}
+.listening-note p,
+.sidebar-empty {
+  color: #b2a0c2;
+}
+.sidebar-divider {
+  background: #d2afff16;
+}
+.topbar,
+.spotify-topbar {
+  background: #1c112a9e;
+  border-bottom: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(24px) saturate(135%);
+  backdrop-filter: blur(24px) saturate(135%);
+}
+.topbar-search,
+.global-search-input,
+.search-field {
+  background: #b38ad60b;
+  border: 1px solid #e3c2ff26;
+  box-shadow: inset 0 1px 0 #ffffff05;
+  color: #cbb6df;
+}
+.topbar-search:focus-within,
+.global-search-input:focus-within,
+.search-field:focus-within {
+  border-color: #c89cec99;
+  background: #bb8add10;
+  box-shadow: 0 0 0 3px #b780e010;
+}
+input::placeholder {
+  color: #ac98be;
+}
+.connection-chip {
+  color: #dac0ee;
+  background: #c49ae611;
+  border-color: #d1a7f22a;
+}
+.connection-chip > span,
+.connection-chip.connected > span {
+  background: #c694ee;
+  box-shadow: 0 0 9px #bb79eb66;
+}
+.avatar,
+.profile-dot {
+  background: linear-gradient(145deg, #b17ce8, #e4b2dd);
+  color: #29133c;
+  border-color: #ecd1ff26;
+}
+.home-button,
+.rail-top > button {
+  background: #c6a1ef12;
+}
+.hero-banner,
+.spotify-welcome {
+  background:
+    radial-gradient(ellipse at 82% 60%, #c279ef30, transparent 60%),
+    linear-gradient(125deg, #4d2e657d, #774e8f45 60%, #ad67912b);
+  border: 1px solid #f2d3ff29;
+  border-radius: 22px;
+  box-shadow:
+    inset 0 1px 0 #fff1,
+    var(--glass-shadow);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+.hero-tag,
+.hero-tag > span,
+.spotify-welcome .eyebrow {
+  color: #edceff;
+}
+.hero-tag > span {
+  background: #e0b5ff;
+  box-shadow: 0 0 10px #d89aff80;
+}
+.hero-copy h2 {
+  color: #fff4ff;
+}
+.hero-copy h2 em {
+  color: #e5c0ff;
+}
+.hero-copy > p,
+.spotify-welcome p {
+  color: #d1bbdf;
+}
+.hero-footnote,
+.hero-art-caption,
+.edition-label,
+.edition-label strong {
+  color: #c6a8d5;
+}
+.hero-art {
+  background: radial-gradient(ellipse at 80% 70%, #df9ae72b, transparent 70%);
+}
+.hero-orbit,
+.hero-orbit::after {
+  border-color: #e7c0ff1c;
+}
+.record-disc,
+.welcome-vinyl {
+  background: repeating-radial-gradient(circle, #25162f 0, #25162f 1px, #594063 2px, #21152d 3px);
+  box-shadow:
+    18px 20px 45px #12071c70,
+    0 0 65px #c680df12;
+}
+.record-label,
+.welcome-vinyl > div {
+  background: linear-gradient(145deg, #e2bcfa, #b592dd);
+  color: #402452;
+}
+.record-label::after {
+  background: #392044;
+  border-color: #edcfff;
+}
+.art-sticker {
+  background: #eed5fa;
+  color: #573166;
+  box-shadow: 0 5px 25px #1809223b;
+}
+.primary-button,
+.round-play,
+.quick-play {
+  color: #29133a;
+  background: linear-gradient(115deg, #d2a7ff, #e5b8ef);
+  box-shadow:
+    0 5px 22px #bd77eb26,
+    inset 0 1px 0 #ffffff45;
+}
+.primary-button:hover:not(:disabled),
+.round-play:hover:not(:disabled) {
+  box-shadow: 0 8px 28px #c287ed40;
+}
+.secondary-button,
+.genre-pills button,
+.content-pills > a {
+  background: #be92e50b;
+  border-color: #e0beff22;
+  color: #d0bfdf;
+}
+.genre-pills button.active,
+.content-pills > a.active {
+  background: #e9d6fa;
+  color: #3b2151;
+}
+.quick-tile,
+.playlist-tile,
+.playlist-choices > button {
+  background: #d5a9f50a;
+  border: 1px solid #ecd1ff12;
+}
+.quick-tile:hover,
+.playlist-tile:hover,
+.playlist-choices > button:hover {
+  background: #cba1ec17;
+  border-color: #e5c6ff26;
+}
+.song-card {
+  border-radius: 13px;
+}
+.album-art-wrap .cover-art,
+.song-card-cover > .cover-art {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px #0d051d4d;
+}
+.album-card > p,
+.album-card > p span,
+.song-card > p,
+.catalog-caption,
+.track-title p,
+.track-duration,
+.album-col,
+.track-head {
+  color: #b5a2c7;
+}
+.track-row {
+  border: 1px solid transparent;
+}
+.track-row:hover,
+.track-row.is-current {
+  background: #d0a4f40c;
+  border-color: #d8b1f415;
+}
+.number-text,
+.heart-button {
+  color: #a18ab7;
+}
+.track-head {
+  border-bottom-color: #e0bfff13;
+}
+.track-row.is-current .song-name,
+.track-row.is-current .track-number,
+.icon-button.active {
+  color: #ddbbff;
+}
+.connect-banner,
+.detail-about {
+  background: linear-gradient(135deg, #b377d814, #9165c60a);
+  border-color: #d6b0ef24;
+  border-radius: 17px;
+}
+.connect-icon,
+.dialog-symbol {
+  background: #d1a3ff12;
+  color: #dab4fc;
+}
+.connect-banner p,
+.connect-banner > .subtle-link,
+.detail-about p {
+  color: #c1a8d3;
+}
+.collection-header,
+.collection-violet,
+.collection-orange,
+.collection-blue,
+.spotify-shell .collection-header {
+  background:
+    radial-gradient(ellipse at 85% 20%, #d8a2e91c, transparent 60%),
+    linear-gradient(135deg, #724e8b66, #2b1b3a77);
+  border: 1px solid #d9b7f521;
+  border-radius: 21px;
+}
+.collection-description,
+.collection-meta {
+  color: #c7afd8;
+}
+.collection-meta strong {
+  color: #edddf8;
+}
+.small-avatar {
+  background: #d4acf1;
+  color: #352144;
+}
+.player-bar,
+.spotify-shell .player-bar {
+  background: #20132cde;
+  border-top: 1px solid #eccbff26;
+  box-shadow: 0 -10px 50px #0d051b40;
+  -webkit-backdrop-filter: blur(30px) saturate(140%);
+  backdrop-filter: blur(30px) saturate(140%);
+}
+.main-play,
+.spotify-shell .main-play {
+  background: #ebd7ff;
+  color: #352045;
+  box-shadow: 0 0 22px #c58cfa20;
+}
+.player-placeholder {
+  background: #b486db13;
+  color: #d0b0e7;
+}
+.now-playing-text span,
+.progress-row {
+  color: #b6a0c9;
+}
+.transport > .icon-button,
+.player-options .icon-button {
+  color: #c9b4db;
+}
+.transport > .icon-button.active {
+  color: #e0baff;
+}
+input[type='range'] {
+  background: linear-gradient(to right, #cea0ff var(--progress, 0%), #564161 var(--progress, 0%));
+}
+input[type='range']::-webkit-slider-thumb {
+  background: #f2dfff;
+  box-shadow: 0 0 8px #d2a2f840;
+}
+input[type='range']::-moz-range-thumb {
+  background: #f2dfff;
+}
+.queue-panel,
+.now-detail,
+.app-dialog,
+.spotify-shell .app-dialog {
+  background: #251731f2;
+  border: 1px solid #e3beff2a;
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(28px) saturate(130%);
+  backdrop-filter: blur(28px) saturate(130%);
+}
+.app-dialog::backdrop {
+  background: #0e071baf;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.app-dialog input,
+.spotify-shell .app-dialog input {
+  background: #140c20a6;
+  border-color: #d9b0fa2b;
+  color: #f5ebff;
+}
+.app-dialog label,
+.dialog-help {
+  color: #c1a6d4;
+}
+.dialog-help strong,
+.dialog-help a {
+  color: #e3bffa;
+}
+.toast-message {
+  background: #f0defb;
+  color: #422454;
+  border: 1px solid #f8ebff;
+  box-shadow: 0 8px 35px #13071f66;
+}
+.toast-message > .icon-button {
+  color: #795386;
+}
+.page-footer,
+.moussiqa-footer {
+  border-color: #dfbfff14;
+  color: #b49ac4;
+}
+.moussiqa-footer strong {
+  color: #dac1ea;
+}
+.palette-sage {
+  --cover-bg: #ad8bc5;
+  --cover-ink: #4c2a68;
+  --cover-orbit: #e9cff9;
+}
+.palette-violet {
+  --cover-bg: #8a71b6;
+  --cover-ink: #f1dcff;
+  --cover-orbit: #bba2da;
+}
+.palette-blue {
+  --cover-bg: #9286c7;
+  --cover-ink: #342659;
+  --cover-orbit: #d7c9ff;
+}
+@media (max-width: 650px) {
+  body {
+    background-attachment: scroll;
+  }
+  .sidebar {
+    background: #251731f5;
+  }
+  .hero-banner,
+  .spotify-welcome {
+    border-radius: 17px;
+  }
+  .player-bar,
+  .spotify-shell .player-bar {
+    border-radius: 17px 17px 0 0;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+  .topbar {
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .sidebar,
+  .library-rail.sidebar,
+  .topbar,
+  .spotify-topbar,
+  .player-bar,
+  .spotify-shell .player-bar {
+    background: #24172f;
+  }
+  .hero-banner,
+  .spotify-welcome {
+    background: linear-gradient(125deg, #4a305e, #36213e);
+  }
+}

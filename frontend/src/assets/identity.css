@@ -1,0 +1,288 @@
+/* Deux familles auto-hébergées : une signature géométrique et un texte souple. */
+.app-layout.sidebar-collapsed {
+  --sidebar: 0px;
+}
+.app-layout.sidebar-collapsed > .sidebar {
+  transform: translateX(-100%);
+  visibility: hidden;
+  pointer-events: none;
+}
+.drawer-close {
+  position: absolute;
+  top: 24px;
+  right: 14px;
+}
+.mobile-toggle {
+  flex-shrink: 0;
+}
+@media (min-width: 651px) {
+  .app-layout > .workspace {
+    transition: margin-left 0.2s ease;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-layout > .workspace {
+    transition: none;
+  }
+}
+:root {
+  --font-body: 'Manrope Variable', 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
+  font-optical-sizing: auto;
+}
+h1,
+h2,
+h3,
+.brand,
+.moussiqa-brand,
+.album-name,
+.record-label,
+.welcome-vinyl,
+.creators-monogram,
+.creators-footer strong {
+  font-family: var(--font-display);
+}
+.brand,
+.moussiqa-brand {
+  font-weight: 700;
+  letter-spacing: -1.6px;
+}
+.welcome-line h1 {
+  font-weight: 600;
+  letter-spacing: -1.2px;
+}
+.hero-copy h2.signature-hook {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 3.8vw, 54px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -1.9px;
+  white-space: normal;
+  margin: 23px 0 18px;
+}
+.signature-hook > span {
+  display: block;
+  margin-bottom: 9px;
+}
+.hero-copy h2.signature-hook em {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.79em;
+  line-height: 1.14;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -1.6px;
+  color: #e5baff;
+  background: linear-gradient(110deg, #ecceff 10%, #d5afff 50%, #f5b9e7 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.signature-hook .hook-amp {
+  font-weight: 400;
+}
+.signature-hook .hook-dot {
+  color: #f6c4ef;
+}
+.hero-banner {
+  min-height: 365px;
+}
+.hero-copy > p {
+  font-size: 12px;
+  line-height: 1.85;
+}
+.hero-copy .hero-footnote {
+  font-size: 8px;
+  letter-spacing: 0.2px;
+}
+.record-label > span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+.record-label small {
+  font-family: var(--font-body);
+  font-size: 4px;
+  letter-spacing: 0.8px;
+}
+.art-sticker {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: -0.6px;
+  border-radius: 7px;
+}
+.hero-art-caption {
+  font-family: var(--font-body);
+  font-size: 6px;
+  letter-spacing: 1.4px;
+}
+.creators-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 26px 42px 30px;
+  margin-top: 25px;
+  border-top: 1px solid #dec4ff17;
+  color: #bca6d0;
+}
+.creators-footer > div {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex-shrink: 0;
+}
+.creators-monogram {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 14px;
+  border: 1px solid #e6b9ff2c;
+  background: linear-gradient(145deg, #bb81df20, #ba92ec09);
+  color: #e9c9ff;
+  font-size: 18px;
+  font-weight: 700;
+}
+.creators-monogram > span {
+  font-size: 11px;
+  color: #c895e3;
+}
+.creators-footer > div strong {
+  display: block;
+  color: #ead8fa;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+.creators-footer small {
+  display: block;
+  font-size: 9px;
+  margin-top: 6px;
+  color: #ad96c3;
+}
+.creators-footer > p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px 8px;
+  font-size: 10px;
+  line-height: 1.8;
+}
+.creators-footer > p strong {
+  font-size: 10px;
+  color: #e1c6f2;
+  font-weight: 500;
+}
+.creators-join {
+  color: #bc89d8;
+  font-family: var(--font-display);
+}
+@media (max-width: 1150px) {
+  .hero-copy h2.signature-hook {
+    font-size: 40px;
+  }
+  .creators-footer {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+  .creators-footer > p {
+    max-width: 300px;
+  }
+}
+@media (max-width: 900px) {
+  .hero-copy h2.signature-hook {
+    font-size: 36px;
+    letter-spacing: -1.5px;
+  }
+  .hero-copy h2.signature-hook em {
+    letter-spacing: -1.3px;
+  }
+  .creators-footer {
+    padding-left: 22px;
+    padding-right: 22px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .creators-footer > p {
+    max-width: none;
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 650px) {
+  .hero-banner {
+    min-height: 320px;
+    grid-template-columns: 1.25fr 0.75fr;
+  }
+  .hero-copy {
+    padding: 25px 18px;
+  }
+  .hero-copy h2.signature-hook {
+    font-size: 33px;
+    line-height: 1.1;
+    margin-top: 21px;
+  }
+  .hero-copy h2.signature-hook em {
+    font-size: 0.76em;
+    letter-spacing: -1px;
+  }
+  .hero-copy > p {
+    font-size: 10px;
+    line-height: 1.8;
+    max-width: 185px;
+  }
+  .hero-copy .hero-footnote {
+    display: flex;
+    max-width: 190px;
+    font-size: 7px;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+  .hero-copy .hero-footnote > svg {
+    width: 13px;
+    min-width: 13px;
+  }
+  .hero-tag {
+    font-size: 6px;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+  }
+  .hero-art {
+    min-height: 320px;
+  }
+  .art-sticker {
+    font-size: 11px;
+    right: 9px;
+    padding: 10px;
+  }
+  .creators-footer {
+    padding: 23px 20px;
+    gap: 15px;
+  }
+  .creators-footer > p {
+    display: block;
+    font-size: 9px;
+  }
+  .creators-footer > p strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+  }
+  .creators-join {
+    display: inline-block;
+    margin-top: 4px;
+  }
+}
+@media (max-width: 360px) {
+  .hero-copy h2.signature-hook {
+    font-size: 29px;
+  }
+  .hero-copy h2.signature-hook em {
+    font-size: 0.76em;
+  }
+}

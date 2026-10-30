@@ -1,0 +1,317 @@
+<script setup>
+import { computed, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import {
+  ArrowUpRight,
+  ArrowRight,
+  Play,
+  Search,
+  X,
+  Plus,
+  Heart,
+  Disc3,
+  Sparkles,
+  AudioLines
+} from 'lucide-vue-next'
+import { useLibrary } from '../composables/useLibrary'
+import { usePlayer } from '../composables/usePlayer'
+import { filterTracks, normalize } from '../services/utils'
+import AlbumCard from '../components/AlbumCard.vue'
+import CoverArt from '../components/CoverArt.vue'
+import TrackList from '../components/TrackList.vue'
+const library = useLibrary()
+const player = usePlayer()
+const route = useRoute()
+const query = ref('')
+const audioInput = ref(null)
+async function importAudio(event) {
+  try { await library.importAudio(event.target.files) } catch {}
+  event.target.value = ''
+}
+const activeGenre = ref('Tout')
+const isSearch = computed(() => route.name === 'search')
+const isLibrary = computed(() => route.name === 'library')
+const selectedTracks = computed(() => {
+  const base =
+    library.mode === 'spotify' && query.value
+      ? library.spotifySearchTracks
+      : filterTracks(library.tracks, query.value)
+  return base.filter((t) => activeGenre.value === 'Tout' || t.genre === activeGenre.value)
+})
+const selectedAlbums = computed(() => {
+  const base =
+    library.mode === 'spotify' && query.value
+      ? library.spotifySearchAlbums
+      : library.albums
+  return base.filter(
+    (a) =>
+      (library.mode === 'spotify' || !query.value ||
+        normalize(`${a.title} ${a.artist} ${a.genre || ''}`).includes(normalize(query.value))) &&
+      (activeGenre.value === 'Tout' || a.genre === activeGenre.value)
+  )
+})
+let searchTimer
+watch(query, (val) => {
+  clearTimeout(searchTimer)
+  if (library.mode === 'spotify' && val.trim()) {
+    searchTimer = setTimeout(() => library.search(val.trim()), 300)
+  }
+})
+watch(
+  () => [route.name, route.query.q],
+  () => {
+    query.value = String(route.query.q || '')
+    activeGenre.value = 'Tout'
+  },
+  { immediate: true }
+)
+function playSelection() {
+  if (library.tracks.length) player.play(library.tracks[0], library.tracks)
+}
+function resetFilters() {
+  query.value = ''
+  activeGenre.value = 'Tout'
+}
+</script>
+
+<template>
+  <div class="browse-view page-content">
+    <div v-if="library.mode === 'local'" class="section-heading">
+      <span class="small muted">ÉCOUTE LOCALE · SANS COMPTE</span>
+      <button class="secondary-button" :disabled="library.importing" @click="audioInput.click()"><Plus :size="17" />{{ library.importing ? 'Import en cours…' : 'Importer des morceaux' }}</button>
+      <input ref="audioInput" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac" multiple hidden @change="importAudio" />
+    </div>
+    <template v-if="!isSearch && !isLibrary">
+      <div class="welcome-line">
+        <div>
+          <p class="eyebrow">MOUSSIQA · LE SON DE NOTRE GÉNÉRATION</p>
+          <h1>Ton univers. Tes vibes<span class="lime">.</span></h1>
+        </div>
+        <span class="edition-label">VOTRE SÉLECTION<br /><strong>VOL. 001 / MOUSSIQA</strong></span>
+      </div>
+      <section class="hero-banner" aria-label="Sélection du moment">
+        <div class="hero-copy">
+          <span class="hero-tag"><span></span>LA SIGNATURE MOUSSIQA</span>
+          <h2 class="signature-hook">
+            <span>Vibez avec</span
+            ><em
+              >ER-RAFIY <span class="hook-amp">&amp;</span><br />SAADEDDINE<span class="hook-dot"
+                >.</span
+              ></em
+            >
+          </h2>
+          <p>
+            Du son, du style, et des vibes à partager.<br class="desktop-break" />
+            Bienvenue dans notre univers musical.
+          </p>
+          <button class="primary-button" :disabled="!library.tracks.length" @click="playSelection">
+            <Play :size="19" fill="currentColor" />Lancer l’écoute
+          </button>
+          <div class="hero-footnote">
+            <AudioLines :size="16" /><span>Imaginé par ER-RAFIY &amp; SAADEDDINE</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-orbit"></div>
+          <div class="record-disc">
+            <div class="record-label">
+              <AudioLines :size="30" /><span>Moussiqa</span><small>ER-RAFIY × SAADEDDINE</small>
+            </div>
+          </div>
+          <div class="art-sticker"><Sparkles :size="17" />made for<br />your vibes.</div>
+          <span class="hero-art-caption"
+            >ER-RAFIY &amp; SAADEDDINE · NOTRE SON, NOTRE SIGNATURE.</span
+          >
+        </div>
+      </section>
+      <div class="discovery-heading">
+        <div class="section-heading">
+          <div>
+            <h2>Dans vos oreilles</h2>
+            <p class="muted">Une nouvelle couleur pour chaque humeur.</p>
+          </div>
+          <RouterLink to="/bibliotheque" class="subtle-link"
+            >Tout explorer<ArrowRight :size="17"
+          /></RouterLink>
+        </div>
+        <div class="genre-pills">
+          <button
+            v-for="genre in ['Tout', ...library.genres]"
+            :key="genre"
+            :class="{ active: activeGenre === genre }"
+            :aria-pressed="activeGenre === genre"
+            @click="activeGenre = genre"
+          >
+            {{ genre }}
+          </button>
+        </div>
+      </div>
+      <div v-if="selectedAlbums.length" class="album-grid">
+        <AlbumCard v-for="album in selectedAlbums.slice(0, 8)" :key="album.id" :album="album" />
+      </div>
+      <div v-else class="empty-state">
+        <Disc3 :size="36" />
+        <h3>La scène est à vous</h3>
+        <p>
+          {{
+            library.mode === 'server'
+              ? 'Ajoutez vos fichiers dans le dossier music, lancez un scan Navidrome et actualisez.'
+              : 'Aucun album pour ce filtre.'
+          }}
+        </p>
+      </div>
+      <section class="tracks-section">
+        <div class="section-heading">
+          <div>
+            <h2>{{ library.recentTracks.length ? 'On remet ça ?' : 'Les premières notes' }}</h2>
+            <p class="muted">
+              {{
+                library.recentTracks.length
+                  ? 'Vos dernières écoutes, à portée de main.'
+                  : 'Appuyez sur lecture. Laissez le reste suivre.'
+              }}
+            </p>
+          </div>
+          <span class="small muted">{{
+            library.mode === 'local' ? 'COMPOSITIONS ORIGINALES' : 'VOTRE COLLECTION'
+          }}</span>
+        </div>
+        <TrackList
+          :tracks="
+            (library.recentTracks.length ? library.recentTracks : selectedTracks).slice(0, 5)
+          "
+        />
+      </section>
+      <section v-if="library.mode === 'local'" class="connect-banner">
+        <div class="connect-icon"><Disc3 :size="27" /></div>
+        <div>
+          <h3>Et si on écoutait votre collection ?</h3>
+          <p>Vos morceaux inclus sont disponibles sans connexion. Spotify reste facultatif.</p>
+        </div>
+        <button class="subtle-link" @click="library.dialog = 'login'">
+          Connecter Spotify<ArrowUpRight :size="19" />
+        </button>
+      </section>
+    </template>
+    <template v-else>
+      <div class="page-heading">
+        <p class="eyebrow">
+          {{ isSearch ? 'LE PROCHAIN COUP DE CŒUR EST ICI' : 'TOUT CE QUI VOUS RESSEMBLE' }}
+        </p>
+        <h1>
+          {{ isSearch ? 'Cherchez. Trouvez. Écoutez' : 'Votre bibliothèque'
+          }}<span class="lime">.</span>
+        </h1>
+        <p class="muted">
+          {{
+            isSearch
+              ? 'Un titre, un artiste, une humeur… suivez votre envie.'
+              : `${library.albums.length} albums · ${library.tracks.length} morceaux · ${library.playlists.length} playlists`
+          }}
+        </p>
+      </div>
+      <div class="search-field">
+        <Search :size="21" /><input
+          v-model="query"
+          :aria-label="isSearch ? 'Rechercher dans la musique' : 'Filtrer la bibliothèque'"
+          placeholder="Que voulez-vous écouter ?"
+          type="search"
+        /><button
+          v-if="query"
+          class="icon-button"
+          aria-label="Effacer la recherche"
+          @click="query = ''"
+        >
+          <X :size="18" />
+        </button>
+      </div>
+      <div class="genre-pills">
+        <button
+          v-for="genre in ['Tout', ...library.genres]"
+          :key="genre"
+          :class="{ active: activeGenre === genre }"
+          :aria-pressed="activeGenre === genre"
+          @click="activeGenre = genre"
+        >
+          {{ genre }}
+        </button>
+      </div>
+      <section v-if="isLibrary && !query" class="library-playlists">
+        <div class="section-heading">
+          <h2>Vos sélections</h2>
+          <button class="subtle-link" @click="library.openPlaylistDialog()">
+            <Plus :size="17" />Créer une playlist
+          </button>
+        </div>
+        <div class="playlist-grid">
+          <RouterLink to="/favoris" class="playlist-tile likes-tile"
+            ><Heart :size="28" fill="currentColor" />
+            <div>
+              <strong>Coups de cœur</strong><span>{{ library.favorites.length }} titres aimés</span>
+            </div>
+            <ArrowUpRight :size="20" /></RouterLink
+          ><RouterLink
+            v-for="playlist in library.playlists"
+            :key="playlist.id"
+            :to="`/playlist/${playlist.id}`"
+            class="playlist-tile"
+            ><CoverArt :item="playlist" decorative />
+            <div>
+              <strong>{{ playlist.name }}</strong
+              ><span
+                >{{ playlist.songCount ?? playlist.songIds.length }} morceau{{
+                  (playlist.songCount ?? playlist.songIds.length) > 1 ? 'x' : ''
+                }}</span
+              >
+            </div>
+            <ArrowUpRight :size="20"
+          /></RouterLink>
+        </div>
+      </section>
+      <section v-if="selectedAlbums.length" class="tracks-section">
+        <div class="section-heading">
+          <h2>Albums</h2>
+          <span class="muted small"
+            >{{ selectedAlbums.length }} résultat{{ selectedAlbums.length > 1 ? 's' : '' }}</span
+          >
+        </div>
+        <div class="album-grid">
+          <AlbumCard v-for="album in selectedAlbums" :key="album.id" :album="album" />
+        </div>
+      </section>
+      <section class="tracks-section">
+        <div class="section-heading">
+          <h2>Morceaux</h2>
+          <span class="muted small"
+            >{{ selectedTracks.length }} résultat{{ selectedTracks.length > 1 ? 's' : '' }}</span
+          >
+        </div>
+        <TrackList v-if="selectedTracks.length" :tracks="selectedTracks" />
+        <div v-else class="empty-state">
+          <Search :size="34" />
+          <h3>
+            {{
+              query
+                ? 'Pas encore la bonne fréquence'
+                : 'Votre collection attend ses premières notes'
+            }}
+          </h3>
+          <p>
+            {{
+              query
+                ? 'Essayez un autre titre ou retirez un filtre.'
+                : 'Importez vos fichiers audio dans la bibliothèque locale.'
+            }}
+          </p>
+          <button
+            v-if="query || activeGenre !== 'Tout'"
+            class="secondary-button"
+            @click="resetFilters"
+          >
+            Effacer les filtres
+          </button>
+        </div>
+      </section>
+    </template>
+  </div>
+</template>

@@ -1,0 +1,8 @@
+Les huit fichiers audio du dossier demo sont des compositions synthétiques
+originales créées pour ce projet par scripts/generate-demo.mjs.
+Aucun enregistrement ou échantillon externe n'a été utilisé.
+
+Ces enregistrements sont mis à disposition sous CC0 1.0 Universal :
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Studio Ondes est un nom de démonstration utilisé dans les métadonnées.
