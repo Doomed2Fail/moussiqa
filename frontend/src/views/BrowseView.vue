@@ -21,6 +21,20 @@ import TrackList from '../components/TrackList.vue'
 const library = useLibrary()
 const player = usePlayer()
 const route = useRoute()
+// Deux nappes de fréquences dessinées pour l’identité Moussiqa.
+const soundRibbons = [0, 1].map(layer => Array.from({ length: 27 }, (_, strand) => {
+  const points = Array.from({ length: 91 }, (_, step) => {
+    const t = step / 90
+    const envelope = Math.sin(Math.PI * t)
+    const x = 38 + t * 524
+    const y = 199 + Math.sin(t * Math.PI * 2.25 + layer * 2.5) * envelope * 90
+      + (strand - 13) * (2.5 + envelope * 2.1)
+      + Math.cos(t * Math.PI * 3 + strand * 0.045 + layer) * envelope * 16
+    return `${step ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`
+  })
+  return points.join(' ')
+}))
+
 const query = ref('')
 const audioInput = ref(null)
 async function importAudio(event) {
@@ -110,24 +124,35 @@ function resetFilters() {
             <AudioLines :size="16" /><span>Imaginé par ER-RAFIY &amp; SAADEDDINE</span>
           </div>
         </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="hero-orbit"></div>
-          <div class="record-disc">
-            <div class="record-label duo-record-label">
-              <b class="duo-record-monogram">ER<span>×</span>S</b>
-              <span>Moussiqa</span>
-              <small>TAHA AMINE · ZINEB</small>
-              <i class="duo-record-edition">ÉDITION ORIGINALE · 01</i>
-            </div>
+        <div class="hero-art frequency-art" aria-hidden="true">
+          <div class="frequency-kicker"><span></span>FRÉQUENCES PARTAGÉES <b>001 / MOUSSIQA</b></div>
+          <svg class="frequency-sculpture" viewBox="0 0 600 400" fill="none">
+            <defs>
+              <linearGradient id="moussiqa-lilac" x1="38" y1="100" x2="562" y2="300" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#8d65ed" /><stop offset=".48" stop-color="#f0d6ff" /><stop offset="1" stop-color="#b484fa" />
+              </linearGradient>
+              <linearGradient id="moussiqa-rose" x1="38" y1="300" x2="562" y2="100" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#e9a6d4" /><stop offset=".55" stop-color="#c59aff" /><stop offset="1" stop-color="#8154d6" />
+              </linearGradient>
+              <radialGradient id="moussiqa-halo">
+                <stop stop-color="#c594f4" stop-opacity=".23" /><stop offset="1" stop-color="#a879e7" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <ellipse cx="300" cy="205" rx="260" ry="170" fill="url(#moussiqa-halo)" />
+            <g v-for="(ribbon, layer) in soundRibbons" :key="layer" :stroke="layer ? 'url(#moussiqa-rose)' : 'url(#moussiqa-lilac)'" :class="`frequency-ribbon ribbon-${layer}`">
+              <path v-for="(path, index) in ribbon" :key="index" :d="path" :opacity=".28 + Math.sin(index / 26 * Math.PI) * .6" stroke-width=".85" />
+            </g>
+            <path d="M59 88h18m-9-9v18M513 314h14m-7-7v14" stroke="#e5c5ff" stroke-width="1" />
+            <circle cx="495" cy="83" r="2.5" fill="#eccfff" />
+            <circle cx="106" cy="312" r="2" fill="#e9afd9" />
+          </svg>
+          <div class="frequency-message"><span>Le son</span><em>nous relie.</em></div>
+          <div class="frequency-signatures">
+            <span>ER-RAFIY<small>TAHA AMINE</small></span>
+            <i></i>
+            <span>SAADEDDINE<small>ZINEB</small></span>
           </div>
-          <div class="art-sticker duo-sticker">
-            <span class="duo-sticker-seal">ER × S</span>
-            <strong>Deux signatures.<br />Une même vibe.</strong>
-            <small>ER-RAFIY &amp; SAADEDDINE</small>
-          </div>
-          <span class="hero-art-caption"
-            >MOUSSIQA ORIGINAL · IMAGINÉ À DEUX, ÉCOUTÉ À L’INFINI.</span
-          >
+          <span class="frequency-caption">DEUX SENSIBILITÉS. UNE FRÉQUENCE.</span>
         </div>
       </section>
       <div class="discovery-heading">

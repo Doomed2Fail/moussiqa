@@ -287,55 +287,67 @@ h3,
   }
 }
 
-/* Le sceau du duo : une édition vinyle signée ER-RAFIY et SAADEDDINE. */
-.duo-record-label::after { display: none; }
-.duo-record-monogram {
+/* Sculpture de fréquences : dessin vectoriel original de Moussiqa. */
+.hero-art.frequency-art {
+  min-height: 365px;
+  isolation: isolate;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 55%, #b47aec20, transparent 67%);
+}
+.frequency-kicker {
+  position: absolute;
+  inset: 28px 27px auto;
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 20px;
-  line-height: 1.1;
-  letter-spacing: -1.5px;
-  margin-bottom: 4px;
+  gap: 7px;
+  color: #e6caf7;
+  font-size: 6px;
+  letter-spacing: 1.6px;
 }
-.duo-record-monogram > span { font-size: 12px; font-weight: 400; }
-.duo-record-label small { font-size: 5px; letter-spacing: 0.7px; }
-.duo-record-edition {
-  margin-top: 5px;
-  font-size: 3.5px;
-  font-style: normal;
-  letter-spacing: 0.7px;
+.frequency-kicker > span { width: 4px; height: 4px; border-radius: 50%; background: #e2bcff; box-shadow: 0 0 10px #e2bcff; }
+.frequency-kicker b { margin-left: auto; font-size: 5px; font-weight: 400; opacity: .6; }
+.frequency-sculpture { position: absolute; width: 115%; max-width: none; height: 100%; inset: 0 auto auto -7.5%; }
+.frequency-ribbon { transform-origin: center; animation: frequency-breathe 12s ease-in-out infinite alternate; }
+.frequency-ribbon.ribbon-1 { animation-delay: -6s; animation-direction: alternate-reverse; }
+.frequency-message {
+  z-index: 1;
+  text-align: center;
+  transform: translateY(-4px) rotate(-5deg);
+  color: #fbf0ff;
+  text-shadow: 0 3px 22px #21102fe6;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.9vw, 56px);
+  line-height: .96;
+  letter-spacing: -2px;
 }
-.duo-sticker {
-  background: linear-gradient(135deg, #f4dcff, #d4b1f5);
-  border: 1px solid #fff9;
-  box-shadow: 0 8px 28px #13051f40, inset 0 0 0 4px #ffffff20;
-  padding: 14px 17px;
-  transform: rotate(8deg);
+.frequency-message span, .frequency-message em { display: block; }
+.frequency-message span { font-weight: 400; }
+.frequency-message em { font-weight: 600; font-style: normal; color: #e7c2ff; }
+.frequency-signatures {
+  position: absolute;
+  bottom: 45px;
+  left: 15%;
+  right: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-family: var(--font-display);
+  color: #eddbfa;
+  font-size: 10px;
+  letter-spacing: 1px;
 }
-.duo-sticker-seal {
-  display: block;
-  width: fit-content;
-  padding-bottom: 5px;
-  margin-bottom: 7px;
-  border-bottom: 1px solid currentColor;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-.duo-sticker strong { display: block; font-size: 14px; line-height: 1.15; }
-.duo-sticker small {
-  display: block;
-  margin-top: 9px;
-  font-size: 5px;
-  letter-spacing: 0.8px;
-}
+.frequency-signatures > span { flex: 1; text-align: center; }
+.frequency-signatures small { display: block; margin-top: 5px; font-size: 5px; letter-spacing: 1.8px; color: #bd9ecd; }
+.frequency-signatures i { width: 37px; height: 1px; background: linear-gradient(90deg, transparent, #e4bfff, transparent); }
+.frequency-caption { position: absolute; bottom: 20px; font-size: 5px; letter-spacing: 2px; color: #c7a9d9; }
+@keyframes frequency-breathe { from { transform: translateY(-4px) scaleY(.97); } to { transform: translateY(4px) scaleY(1.04); } }
+@media (prefers-reduced-motion: reduce) { .frequency-ribbon { animation: none; } }
 @media (max-width: 650px) {
-  .duo-record-monogram { font-size: 15px; margin-bottom: 2px; }
-  .duo-record-monogram > span { font-size: 9px; }
-  .duo-record-label small { font-size: 3.5px; letter-spacing: 0.2px; }
-  .duo-record-edition { font-size: 3px; margin-top: 3px; letter-spacing: 0.1px; }
-  .duo-sticker { padding: 11px; }
-  .duo-sticker strong { font-size: 11px; }
-  .duo-sticker-seal { font-size: 9px; margin-bottom: 5px; }
-  .duo-sticker small { font-size: 4px; letter-spacing: 0.3px; }
+  .hero-art.frequency-art { min-height: 290px; }
+  .frequency-message { font-size: 43px; }
+  .frequency-kicker { inset: 20px 18px auto; font-size: 5px; letter-spacing: 1px; }
+  .frequency-kicker b { font-size: 4px; }
+  .frequency-signatures { bottom: 39px; left: 10%; right: 10%; font-size: 9px; gap: 9px; }
+  .frequency-caption { bottom: 17px; font-size: 4px; letter-spacing: 1.4px; }
 }
