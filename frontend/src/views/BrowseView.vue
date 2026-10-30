@@ -10,7 +10,6 @@ import {
   Plus,
   Heart,
   Disc3,
-  Sparkles,
   AudioLines
 } from 'lucide-vue-next'
 import { useLibrary } from '../composables/useLibrary'
@@ -114,13 +113,20 @@ function resetFilters() {
         <div class="hero-art" aria-hidden="true">
           <div class="hero-orbit"></div>
           <div class="record-disc">
-            <div class="record-label">
-              <AudioLines :size="30" /><span>Moussiqa</span><small>ER-RAFIY × SAADEDDINE</small>
+            <div class="record-label duo-record-label">
+              <b class="duo-record-monogram">ER<span>×</span>S</b>
+              <span>Moussiqa</span>
+              <small>TAHA AMINE · ZINEB</small>
+              <i class="duo-record-edition">ÉDITION ORIGINALE · 01</i>
             </div>
           </div>
-          <div class="art-sticker"><Sparkles :size="17" />made for<br />your vibes.</div>
+          <div class="art-sticker duo-sticker">
+            <span class="duo-sticker-seal">ER × S</span>
+            <strong>Deux signatures.<br />Une même vibe.</strong>
+            <small>ER-RAFIY &amp; SAADEDDINE</small>
+          </div>
           <span class="hero-art-caption"
-            >ER-RAFIY &amp; SAADEDDINE · NOTRE SON, NOTRE SIGNATURE.</span
+            >MOUSSIQA ORIGINAL · IMAGINÉ À DEUX, ÉCOUTÉ À L’INFINI.</span
           >
         </div>
       </section>

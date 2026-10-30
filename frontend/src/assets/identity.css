@@ -286,3 +286,56 @@ h3,
     font-size: 0.76em;
   }
 }
+
+/* Le sceau du duo : une édition vinyle signée ER-RAFIY et SAADEDDINE. */
+.duo-record-label::after { display: none; }
+.duo-record-monogram {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 4px;
+}
+.duo-record-monogram > span { font-size: 12px; font-weight: 400; }
+.duo-record-label small { font-size: 5px; letter-spacing: 0.7px; }
+.duo-record-edition {
+  margin-top: 5px;
+  font-size: 3.5px;
+  font-style: normal;
+  letter-spacing: 0.7px;
+}
+.duo-sticker {
+  background: linear-gradient(135deg, #f4dcff, #d4b1f5);
+  border: 1px solid #fff9;
+  box-shadow: 0 8px 28px #13051f40, inset 0 0 0 4px #ffffff20;
+  padding: 14px 17px;
+  transform: rotate(8deg);
+}
+.duo-sticker-seal {
+  display: block;
+  width: fit-content;
+  padding-bottom: 5px;
+  margin-bottom: 7px;
+  border-bottom: 1px solid currentColor;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+.duo-sticker strong { display: block; font-size: 14px; line-height: 1.15; }
+.duo-sticker small {
+  display: block;
+  margin-top: 9px;
+  font-size: 5px;
+  letter-spacing: 0.8px;
+}
+@media (max-width: 650px) {
+  .duo-record-monogram { font-size: 15px; margin-bottom: 2px; }
+  .duo-record-monogram > span { font-size: 9px; }
+  .duo-record-label small { font-size: 3.5px; letter-spacing: 0.2px; }
+  .duo-record-edition { font-size: 3px; margin-top: 3px; letter-spacing: 0.1px; }
+  .duo-sticker { padding: 11px; }
+  .duo-sticker strong { font-size: 11px; }
+  .duo-sticker-seal { font-size: 9px; margin-bottom: 5px; }
+  .duo-sticker small { font-size: 4px; letter-spacing: 0.3px; }
+}
